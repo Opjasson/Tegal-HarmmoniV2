@@ -40,7 +40,7 @@ const Detail: React.FC<props> = ({ route }) => {
                     )}
                     {data.alamat ? (
                         <Text>
-                            alamat : Rp.{data.alamat}
+                            alamat : {data.alamat}
                         </Text>
                     ) : (
                         ""
