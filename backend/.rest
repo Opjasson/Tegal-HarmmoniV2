@@ -1,0 +1,13 @@
+###
+GET http://localhost:5000/hotel
+
+###
+POST http://localhost:5000/hotel HTTP/1.1
+content-type: application/json
+
+{
+    "nama" : "kotta go",
+    "deskripsi" : "Dengan menginap di Kotta GO Hotel Tegal di kota Tegal, Anda akan berada hanya 10 menit dengan berjalan kaki dari Pacific Mall dan Alun-Alun Kota. Hotel ini berada 0,7 mi (1,1 km) dari Pancasakti University Building dan 0,8 mi (1,3 km) dari Tek Hay Kiong Temple. Manfaatkan kemudahan yang ada seperti akses Internet nirkabel gratis, layanan concierge, dan TV di ruangan umum. Nikmati kenyamanan rumah Anda sendiri di salah satu dari 52 kamar berpenyejuk udara. Akses internet nirkabel gratis tersedia untuk berbagai keperluan Anda. Kamar mandi pribadi dengan shower memiliki perlengkapan mandi gratis dan sandal. Fasilitas mencakup meja tulis dan layanan penyiapan tempat tidur, dan layanan pembenahan kamar disediakan setiap hari. Nikmati hidangan di Piyama Cafe atau makanan ringan di kedai kopi/kafe hotel.Hilangkah dahaga dengan minuman favorit Anda di bar/lounge. Sarapan masakan setempat gratis disajikan setiap hari mulai pukul 06.00 hingga 10.00. Kotta GO Hotel Tegal beralamat di Jl. Mayjend Sutoyo No.31, Randugunting, Tegal, Jawa Tengah, ID",
+    "img" : "https://res.cloudinary.com/dqcnnluof/image/upload/v1741719233/kottaGo_arxbkd.jpg",
+    "maps" : "https://maps.app.goo.gl/s3J4tBDUjHaxxMmt8"
+}
