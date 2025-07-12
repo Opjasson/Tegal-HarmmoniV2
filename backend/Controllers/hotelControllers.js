@@ -54,7 +54,7 @@ export async function addData(req, res) {
 export const updateHotelById = async (req, res) => {
     try {
         const { nama, deskripsi, img, maps, harga, alamat } = req.body;
-        await barang.update(
+        await hotel.update(
             {
                 nama,
                 deskripsi,
