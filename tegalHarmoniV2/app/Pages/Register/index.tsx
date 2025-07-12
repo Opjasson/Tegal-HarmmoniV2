@@ -8,12 +8,44 @@ import {
     SafeAreaView,
 } from "react-native";
 import { MaterialIcons, FontAwesome } from "@expo/vector-icons";
+import { NavigationProp } from "@react-navigation/native";
 
-const RegisterPage = () => {
+interface props {
+    navigation: NavigationProp<any, any>;
+}
+
+const RegisterPage: React.FC<props> = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confPassword, setConfPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState<string>();
+
+    const handleRegister = async () => {
+        if (email && password && confPassword) {
+            const response = await fetch("http://192.168.220.220:5000/user", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                    role : "user",
+                    confPassword: confPassword,
+                }),
+            });
+
+            if (JSON.stringify(response.status) === "400") {
+                setError("Password sesuaikan Confirm Password!");
+            } else {
+                alert("Berhasil membuat akun");
+                navigation.navigate("Login");
+            }
+        } else {
+            setError("Isi dengan lengkap!");
+        }
+    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -28,6 +60,7 @@ const RegisterPage = () => {
 
                 {/* Card putih */}
                 <View style={styles.card}>
+                    <Text style={{ color : "red", fontSize : 15, textAlign : "center" }}>{error}</Text>
                     <View style={styles.inputGroup}>
                         <MaterialIcons
                             name="person-outline"
@@ -99,11 +132,11 @@ const RegisterPage = () => {
                         </TouchableOpacity>
                     </View>
 
-                    <TouchableOpacity style={styles.forgotPassword}>
-                        <Text style={styles.forgotText}>Forgot Password?</Text>
+                    <TouchableOpacity style={styles.forgotPassword} onPress={() => navigation.navigate("Login")}>
+                        <Text style={styles.forgotText}>Login?</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.signInButton}>
+                    <TouchableOpacity style={styles.signInButton} onPress={() => handleRegister()}>
                         <Text style={styles.signInText}>Sign in</Text>
                     </TouchableOpacity>
                 </View>

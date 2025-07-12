@@ -8,8 +8,12 @@ import {
     SafeAreaView,
 } from "react-native";
 import { MaterialIcons, FontAwesome } from "@expo/vector-icons";
+import { NavigationProp } from "@react-navigation/native";
 
-const LoginPage = () => {
+interface props {
+    navigation : NavigationProp<any,any>
+}
+const LoginPage : React.FC <props> = ({navigation}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
@@ -70,8 +74,8 @@ const LoginPage = () => {
                         </TouchableOpacity>
                     </View>
 
-                    <TouchableOpacity style={styles.forgotPassword}>
-                        <Text style={styles.forgotText}>Forgot Password?</Text>
+                    <TouchableOpacity style={styles.forgotPassword} onPress={() => navigation.navigate("Register")}>
+                        <Text style={styles.forgotText}>Register Here!</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.signInButton}>
