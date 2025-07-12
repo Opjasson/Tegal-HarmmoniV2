@@ -36,7 +36,7 @@ const Wisata: React.FC<props> = ({ navigation }) => {
 
     // fetching data untuk mengambil data dari API
     const fetchData = async () => {
-        const response = await fetch("http://192.168.3.220:5000/wisata");
+        const response = await fetch("http://192.168.220.220:5000/wisata");
         const data = await response.json();
 
         // setData = mengisi state data dari fetching

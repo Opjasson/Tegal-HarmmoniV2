@@ -33,8 +33,8 @@ const Hotel: React.FC<props> = ({ navigation }) => {
             deskripsi: string;
             img: string;
             maps: string;
-            harga : string;
-            alamat : string;
+            harga: string;
+            alamat: string;
         }[]
     >([]);
 
@@ -43,7 +43,7 @@ const Hotel: React.FC<props> = ({ navigation }) => {
 
     // fetching data untuk mengambil data dari API
     const fetchData = async () => {
-        const response = await fetch("http://192.168.3.220:5000/hotel");
+        const response = await fetch("http://192.168.220.220:5000/hotel");
         const data = await response.json();
 
         // setData = mengisi state data dari fetching
@@ -102,7 +102,11 @@ const Hotel: React.FC<props> = ({ navigation }) => {
                                 Hotel {item.nama}
                             </Text>
                             <TouchableOpacity
-                                onPress={() => navigation.navigate("Detail", {data : item})}>
+                                onPress={() =>
+                                    navigation.navigate("Detail", {
+                                        data: item,
+                                    })
+                                }>
                                 <Text style={styles.descHotel}>
                                     {item.deskripsi.substring(0, 70)}
                                     <Text

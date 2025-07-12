@@ -1,6 +1,4 @@
-import {
-    kuliner,
-} from "@/app/Inventory";
+import { kuliner } from "@/app/Inventory";
 import { NavigationProp } from "@react-navigation/native";
 import Entypo from "@expo/vector-icons/Entypo";
 import React, { useEffect, useState } from "react";
@@ -38,7 +36,7 @@ const Wisata: React.FC<props> = ({ navigation }) => {
 
     // fetching data untuk mengambil data dari API
     const fetchData = async () => {
-        const response = await fetch("http://192.168.3.220:5000/kuliner");
+        const response = await fetch("http://192.168.220.220:5000/kuliner");
         const data = await response.json();
 
         // setData = mengisi state data dari fetching
@@ -61,9 +59,7 @@ const Wisata: React.FC<props> = ({ navigation }) => {
         <View style={styles.container}>
             <StatusBar barStyle={"light-content"} backgroundColor={"#1F1F1F"} />
             <View style={styles.banner}>
-                <ImageBackground
-                    style={styles.bgBanner}
-                    source={kuliner}>
+                <ImageBackground style={styles.bgBanner} source={kuliner}>
                     <View style={styles.judulBan}>
                         <Text style={styles.banText}>HALAMAN KULINER</Text>
                     </View>
@@ -93,11 +89,13 @@ const Wisata: React.FC<props> = ({ navigation }) => {
                             style={styles.img}
                         />
                         <View style={{ marginLeft: 5 }}>
-                            <Text style={styles.namaHotel}>
-                                {item.nama}
-                            </Text>
+                            <Text style={styles.namaHotel}>{item.nama}</Text>
                             <TouchableOpacity
-                                onPress={() => navigation.navigate("Detail", {data : item})}>
+                                onPress={() =>
+                                    navigation.navigate("Detail", {
+                                        data: item,
+                                    })
+                                }>
                                 <Text style={styles.descHotel}>
                                     {item.deskripsi.substring(0, 70)}
                                     <Text
@@ -183,7 +181,7 @@ const styles = StyleSheet.create({
         color: "#a1a199",
         textDecorationLine: "underline",
         textTransform: "capitalize",
-        width: 200
+        width: 200,
     },
     descHotel: {
         fontSize: 20,

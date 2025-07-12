@@ -44,7 +44,7 @@ const Home: React.FC<props> = ({ navigation }) => {
 
     // fetching data hotel atau menambil data dari backend/API
     const fetchData = async () => {
-        const response = await fetch("http://192.168.3.220:5000/hotel/7");
+        const response = await fetch("http://192.168.220.220:5000/hotel/7");
         const satu = await response.json();
 
         // setData = mengisi state data dari fetching
@@ -53,7 +53,7 @@ const Home: React.FC<props> = ({ navigation }) => {
 
     // fetching data wisata atau mengambil data dari backend/API
     const fetchData2 = async () => {
-        const response2 = await fetch("http://192.168.3.220:5000/wisata/7");
+        const response2 = await fetch("http://192.168.220.220:5000/wisata/7");
         const satu2 = await response2.json();
 
         // setData = mengisi state data dari fetching
@@ -61,7 +61,7 @@ const Home: React.FC<props> = ({ navigation }) => {
     };
 
     const fetchData3 = async () => {
-        const response3 = await fetch("http://192.168.3.220:5000/kuliner/8");
+        const response3 = await fetch("http://192.168.220.220:5000/kuliner/8");
         const satu3 = await response3.json();
 
         // setData = mengisi state data dari fetching
@@ -83,7 +83,8 @@ const Home: React.FC<props> = ({ navigation }) => {
                 </View>
                 <View>
                     <Text style={styles.head1}>Penawaran Weekend</Text>
-                    <TouchableOpacity onPress={() => navigation.navigate("formPromo")}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate("formPromo")}>
                         <ImageBackground
                             source={iklan}
                             style={styles.iklanImg}></ImageBackground>
