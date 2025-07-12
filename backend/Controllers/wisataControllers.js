@@ -38,3 +38,39 @@ export async function addData(req, res) {
         res.status(400).json({ msg: "Internal server error!" });
     }
 }
+
+export const updateWisataById = async (req, res) => {
+    try {
+        const { nama, deskripsi, img, maps, alamat } = req.body;
+        await hotel.update(
+            {
+                nama,
+                deskripsi,
+                img,
+                maps,
+                alamat,
+            },
+            {
+                where: {
+                    id: req.params.id,
+                },
+            }
+        );
+        res.status(200).json({ msg: "Data berhasil dirubah" });
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
+};
+
+export const deleteWisataById = async (req, res) => {
+    try {
+        await hotel.destroy({
+            where: {
+                id: req.params.id,
+            },
+        });
+        res.status(200).json({ msg: "Data berhasil dihapus!" });
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
+};
