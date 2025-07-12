@@ -77,9 +77,14 @@ const Home: React.FC<props> = ({ navigation }) => {
     return (
         <View style={styles.containerContent}>
             <ScrollView>
-                <View style={styles.titlePage}>
-                    <Text style={styles.home}>Home</Text>
-                    <Image style={styles.icon} source={home} />
+                <View style={{ flexDirection : "row", justifyContent : "space-between" }}>
+                    <View style={styles.titlePage}>
+                        <Text style={styles.home}>Home</Text>
+                        <Image style={styles.icon} source={home} />
+                    </View>
+                    <TouchableOpacity>
+                        <Text style={{ fontSize : 20 }}>Log out</Text>
+                    </TouchableOpacity>
                 </View>
                 <View>
                     <Text style={styles.head1}>Penawaran Weekend</Text>

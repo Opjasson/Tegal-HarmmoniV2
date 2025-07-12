@@ -27,20 +27,20 @@ const Detail: React.FC<props> = ({ route }) => {
             <View style={styles.contContent}>
                 <Text style={styles.topInfo}>Deskripsi Lengkap</Text>
 
-                <Image resizeMode="cover" style={styles.img} src={data.img} />
+                <Image resizeMode="cover" style={styles.img} src={data?.img} />
                 <View style={styles.isiContent}>
-                    <Text style={styles.namaHotel}>{data.nama}</Text>
-                    <Text style={styles.deskripsi}>{data.deskripsi}</Text>
-                    {data.harga ? (
+                    <Text style={styles.namaHotel}>{data?.nama}</Text>
+                    <Text style={styles.deskripsi}>{data?.deskripsi}</Text>
+                    {data?.harga ? (
                         <Text style={styles.harga}>
-                            Harga mulai dari : Rp.{data.harga}
+                            Harga mulai dari : Rp.{data?.harga}
                         </Text>
                     ) : (
                         ""
                     )}
-                    {data.alamat ? (
+                    {data?.alamat ? (
                         <Text>
-                            alamat : {data.alamat}
+                            alamat : {data?.alamat}
                         </Text>
                     ) : (
                         ""
@@ -48,7 +48,7 @@ const Detail: React.FC<props> = ({ route }) => {
                    
                     <TouchableOpacity
                         style={styles.maps}
-                        onPress={() => Linking.openURL(`${data.maps}`)}>
+                        onPress={() => Linking.openURL(`${data?.maps}`)}>
                         <Entypo name="location-pin" size={18} color="white" />
                         <Text style={styles.mapsText}>Buka Maps</Text>
                     </TouchableOpacity>

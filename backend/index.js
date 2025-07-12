@@ -8,6 +8,7 @@ import voucherRouters from "./Routers/codeVoucher.js";
 import userRouters from "./Routers/userRouters.js"
 import authRouters from "./Routers/authRouters.js"
 import Users from "./Model/userModel.js";
+import Login from "./Model/loginModel.js";
 import cors from "cors";
 
 dotenv.config();
@@ -15,7 +16,7 @@ const app = express();
 
 // migrate db otomatis
 // (async () => {
-//     await Users.sync();
+//     await Login.sync();
 // })();
 
 app.use(cors());

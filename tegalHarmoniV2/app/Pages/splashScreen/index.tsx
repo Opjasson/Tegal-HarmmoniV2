@@ -23,7 +23,7 @@ const SplashScreen: React.FC<props> = ({navigation}) => {
             <View style={styles.contMain}>
                 <Image style={styles.image} source={splashScreen} />
             </View>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MainApp')}>
                     <Text style={styles.butText}>Mulai</Text>
                 </TouchableOpacity>
         </View>
