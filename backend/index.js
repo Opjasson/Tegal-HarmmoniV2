@@ -5,6 +5,7 @@ import hotelRouters from "./Routers/hotelRouters.js";
 import wisataRouters from "./Routers/wisataRouters.js";
 import kulinerRouters from "./Routers/kulinerRouter.js";
 import voucherRouters from "./Routers/codeVoucher.js";
+import Users from "./Model/userModel.js";
 import cors from "cors";
 
 dotenv.config();
@@ -12,7 +13,7 @@ const app = express();
 
 // migrate db otomatis
 // (async () => {
-//     await voucher.sync();
+//     await Users.sync();
 // })();
 
 app.use(cors());
