@@ -26,7 +26,7 @@ export const getUserById = async (req, res) => {
 };
 
 export const createUser = async (req, res) => {
-    const { email, password, confPassword } = req.body;
+    const { email, password, role, confPassword } = req.body;
 
     const alreadyEmail = await Users.findOne({
         where: {
@@ -48,8 +48,8 @@ export const createUser = async (req, res) => {
     try {
         await Users.create({
             email,
-
             password: HashPassword,
+            role
         });
         res.status(201).json({ msg: "Register berhasil" });
     } catch (error) {
