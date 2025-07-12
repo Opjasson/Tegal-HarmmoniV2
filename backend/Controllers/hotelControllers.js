@@ -50,3 +50,28 @@ export async function addData(req, res) {
         res.status(400).json({ msg: "Internal server error!" });
     }
 }
+
+export const updateHotelById = async (req, res) => {
+    try {
+        const { nama, deskripsi, img, maps, harga, alamat } = req.body;
+        await barang.update(
+            {
+                nama,
+                deskripsi,
+                img,
+                maps,
+                harga,
+                alamat,
+            },
+            {
+                where: {
+                    id: req.params.id,
+                },
+            }
+        );
+        res.status(200).json({ msg: "Data berhasil dirubah" });
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
+};
+
