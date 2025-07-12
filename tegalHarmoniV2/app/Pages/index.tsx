@@ -5,5 +5,6 @@ import Wisata from "./Wisata";
 import Hotel from "./Hotel";
 import Detail from "./Detail";
 import FormPromo from "./Form_Promo";
+import LoginPage from "./Login";
 
-export { SplashScreen, Home, Kuliner, Wisata, Hotel, Detail, FormPromo };
+export { SplashScreen, Home, Kuliner, Wisata, Hotel, Detail, FormPromo, LoginPage };

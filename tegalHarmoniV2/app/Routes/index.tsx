@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { SplashScreen, Home, Kuliner, Wisata, Hotel, Detail, FormPromo} from "../Pages";
+import { SplashScreen, Home, Kuliner, Wisata, Hotel, Detail, FormPromo, LoginPage} from "../Pages";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ButtonTabs } from "../Components";
 
@@ -26,6 +26,7 @@ const Router = () => {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="SplashScreen" component={SplashScreen} />
+            <Stack.Screen name="Login" component={LoginPage} />
             <Stack.Screen
                 options={{
                     headerShown: true,
