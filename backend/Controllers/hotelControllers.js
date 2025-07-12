@@ -75,3 +75,15 @@ export const updateHotelById = async (req, res) => {
     }
 };
 
+export const deleteHotelById = async (req, res) => {
+    try {
+        await hotel.destroy({
+            where: {
+                id: req.params.id,
+            },
+        });
+        res.status(200).json({ msg: "Data berhasil dihapus!" });
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
+};
