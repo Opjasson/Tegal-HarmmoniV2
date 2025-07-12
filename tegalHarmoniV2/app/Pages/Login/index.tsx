@@ -17,7 +17,30 @@ const LoginPage : React.FC <props> = ({navigation}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState<string>();
 
+    const handleLogin = async () => {
+        if (email && password) {
+            const response = await fetch("http://192.168.220.220:5000/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                }),
+            });
+
+            if (JSON.stringify(response.status) === "401") {
+                setError("Email atau password salah!");
+            } else {
+                navigation.navigate("MainApp");
+            }
+        } else {
+            setError("Isi dengan lengkap!");
+        }
+    };
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
@@ -31,6 +54,7 @@ const LoginPage : React.FC <props> = ({navigation}) => {
 
                 {/* Card putih */}
                 <View style={styles.card}>
+                    <Text style={{ color : "red", fontSize : 15, textAlign : "center" }}>{error}</Text>
                     <View style={styles.inputGroup}>
                         <MaterialIcons
                             name="person-outline"
@@ -78,7 +102,7 @@ const LoginPage : React.FC <props> = ({navigation}) => {
                         <Text style={styles.forgotText}>Register Here!</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.signInButton}>
+                    <TouchableOpacity style={styles.signInButton} onPress={() => handleLogin()}>
                         <Text style={styles.signInText}>Sign in</Text>
                     </TouchableOpacity>
                 </View>
