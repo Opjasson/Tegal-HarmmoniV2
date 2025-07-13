@@ -42,13 +42,12 @@ export async function addData(req, res) {
 export const updateWisataById = async (req, res) => {
     try {
         const { nama, deskripsi, img, maps, alamat } = req.body;
-        await hotel.update(
+        await wisata.update(
             {
                 nama,
                 deskripsi,
                 img,
                 maps,
-                alamat,
             },
             {
                 where: {
@@ -64,7 +63,7 @@ export const updateWisataById = async (req, res) => {
 
 export const deleteWisataById = async (req, res) => {
     try {
-        await hotel.destroy({
+        await wisata.destroy({
             where: {
                 id: req.params.id,
             },

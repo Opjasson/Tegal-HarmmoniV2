@@ -49,7 +49,6 @@ export const updateKulinerById = async (req, res) => {
                 deskripsi,
                 img,
                 maps,
-                alamat,
             },
             {
                 where: {

@@ -29,8 +29,7 @@ const UpdateWisata: React.FC<props> = ({ navigation, route }) => {
     const [deskripsi, setDeskripsi] = useState<string>(data?.deskripsi);
     const [imgSend, setImgSend] = useState<string>(data?.img);
     const [maps, setMaps] = useState<string>(data?.maps);
-    const [harga, setHarga] = useState<string>(data?.harga);
-    const [alamat, setAlamat] = useState<string>(data?.alamat);
+
 
     useEffect(() => {
         (async () => {
@@ -106,7 +105,7 @@ const UpdateWisata: React.FC<props> = ({ navigation, route }) => {
     // Handle updateButton
     const sendUpdate = async () => {
         try {
-            await fetch(`http://192.168.220.220:5000/hotel/${data?.id}`, {
+            await fetch(`http://192.168.220.220:5000/wisata/${data?.id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -116,8 +115,6 @@ const UpdateWisata: React.FC<props> = ({ navigation, route }) => {
                     deskripsi: deskripsi,
                     img: imgSend,
                     maps: maps,
-                    harga: harga,
-                    alamat: alamat,
                 }),
             });
             info();
@@ -129,7 +126,7 @@ const UpdateWisata: React.FC<props> = ({ navigation, route }) => {
     // Handle deleteButton
     const handleDelette = async () => {
         try {
-            await fetch(`http://192.168.220.220:5000/hotel/${data?.id}`, {
+            await fetch(`http://192.168.220.220:5000/wisata/${data?.id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -142,6 +139,8 @@ const UpdateWisata: React.FC<props> = ({ navigation, route }) => {
         }
     };
 
+    console.log(deskripsi);
+    
     return (
         <ScrollView>
             <View style={styles.containerForm}></View>
@@ -186,32 +185,6 @@ const UpdateWisata: React.FC<props> = ({ navigation, route }) => {
                 placeholder="Maps"
                 onChangeText={(text) => setMaps(text)}
                 value={maps}
-            />
-
-            <Text style={styles.textLabel}>Harga</Text>
-            <TextInput
-                style={{
-                    borderWidth: 1,
-                    marginBottom: 5,
-                    borderRadius: 5,
-                }}
-                keyboardType="default"
-                placeholder="RNO"
-                onChangeText={(text) => setHarga(text)}
-                value={harga}
-            />
-
-            <Text style={styles.textLabel}>Alamat</Text>
-            <TextInput
-                style={{
-                    borderWidth: 1,
-                    marginBottom: 5,
-                    borderRadius: 5,
-                }}
-                keyboardType="default"
-                placeholder="RNO"
-                onChangeText={(text) => setAlamat(text)}
-                value={alamat}
             />
 
             <Button

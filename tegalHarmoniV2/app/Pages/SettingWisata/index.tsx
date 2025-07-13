@@ -103,7 +103,7 @@ const SettingWisata: React.FC<props> = ({ navigation, route }) => {
                                 </Text>
                                 <TouchableOpacity
                                     onPress={() =>
-                                        navigation.navigate("UpdateKuliner", {
+                                        navigation.navigate("UpdateWisata", {
                                             data: item,
                                         })
                                     }>
