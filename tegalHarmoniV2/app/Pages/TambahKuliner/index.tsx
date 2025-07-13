@@ -24,6 +24,7 @@ const TambahKuliner: React.FC<props> = ({ navigation }) => {
     const [deskripsi, setDeskripsi] = useState<string>();
     const [imgSend, setImgSend] = useState<string>();
     const [maps, setMaps] = useState<string>();
+    const [contact, setContact] = useState<string>();
 
     useEffect(() => {
         (async () => {
@@ -99,21 +100,19 @@ const TambahKuliner: React.FC<props> = ({ navigation }) => {
     // Handle updateButton
     const sendCreate = async () => {
         try {
-            await fetch(
-                `http://192.168.220.220:5000/kuliner`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        nama: nama,
-                        deskripsi: deskripsi,
-                        img: imgSend,
-                        maps: maps,
-                    }),
-                }
-            );
+            await fetch(`http://192.168.220.220:5000/kuliner`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    nama: nama,
+                    deskripsi: deskripsi,
+                    img: imgSend,
+                    maps: maps,
+                    contact: contact,
+                }),
+            });
             info();
         } catch (error) {
             alert("ada error nih");
@@ -161,6 +160,18 @@ const TambahKuliner: React.FC<props> = ({ navigation }) => {
                 keyboardType="default"
                 placeholder="Maps"
                 onChangeText={(text) => setMaps(text)}
+            />
+
+            <Text style={styles.textLabel}>Contact</Text>
+            <TextInput
+                style={{
+                    borderWidth: 1,
+                    marginBottom: 5,
+                    borderRadius: 5,
+                }}
+                keyboardType="number-pad"
+                placeholder="08"
+                onChangeText={(text) => setContact(text)}
             />
 
             <Button

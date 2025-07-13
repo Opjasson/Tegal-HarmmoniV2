@@ -24,6 +24,7 @@ const TambahWisata: React.FC<props> = ({ navigation }) => {
     const [deskripsi, setDeskripsi] = useState<string>();
     const [imgSend, setImgSend] = useState<string>();
     const [maps, setMaps] = useState<string>();
+    const [contact, setContact] = useState<string>();
 
     useEffect(() => {
         (async () => {
@@ -111,6 +112,7 @@ const TambahWisata: React.FC<props> = ({ navigation }) => {
                         deskripsi: deskripsi,
                         img: imgSend,
                         maps: maps,
+                        contact: contact
                     }),
                 }
             );
@@ -161,6 +163,18 @@ const TambahWisata: React.FC<props> = ({ navigation }) => {
                 keyboardType="default"
                 placeholder="Maps"
                 onChangeText={(text) => setMaps(text)}
+            />
+
+            <Text style={styles.textLabel}>Contact</Text>
+            <TextInput
+                style={{
+                    borderWidth: 1,
+                    marginBottom: 5,
+                    borderRadius: 5,
+                }}
+                keyboardType="number-pad"
+                placeholder="08"
+                onChangeText={(text) => setContact(text)}
             />
 
             <Button

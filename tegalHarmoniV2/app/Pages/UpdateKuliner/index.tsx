@@ -29,7 +29,7 @@ const UpdateKuliner: React.FC<props> = ({ navigation, route }) => {
     const [deskripsi, setDeskripsi] = useState<string>(data?.deskripsi);
     const [imgSend, setImgSend] = useState<string>(data?.img);
     const [maps, setMaps] = useState<string>(data?.maps);
-    const [alamat, setAlamat] = useState<string>(data?.alamat);
+    const [contact, setContact] = useState<string>(data?.contact);
 
     useEffect(() => {
         (async () => {
@@ -115,6 +115,7 @@ const UpdateKuliner: React.FC<props> = ({ navigation, route }) => {
                     deskripsi: deskripsi,
                     img: imgSend,
                     maps: maps,
+                    contact: contact
                 }),
             });
             info();
@@ -183,6 +184,18 @@ const UpdateKuliner: React.FC<props> = ({ navigation, route }) => {
                 placeholder="Maps"
                 onChangeText={(text) => setMaps(text)}
                 value={maps}
+            />
+
+            <Text style={styles.textLabel}>Contact</Text>
+            <TextInput
+                style={{
+                    borderWidth: 1,
+                    marginBottom: 5,
+                    borderRadius: 5,
+                }}
+                keyboardType="number-pad"
+                onChangeText={(text) => setContact(text)}
+                value={contact}
             />
 
             <Button

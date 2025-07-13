@@ -26,6 +26,7 @@ const TambahHotel: React.FC<props> = ({ navigation }) => {
     const [maps, setMaps] = useState<string>();
     const [harga, setHarga] = useState<string>();
     const [alamat, setAlamat] = useState<string>();
+    const [contact, setContact] = useState<string>();
 
     useEffect(() => {
         (async () => {
@@ -115,6 +116,7 @@ const TambahHotel: React.FC<props> = ({ navigation }) => {
                         maps: maps,
                         harga: harga,
                         alamat: alamat,
+                        contact: contact
                     }),
                 }
             );
@@ -177,6 +179,18 @@ const TambahHotel: React.FC<props> = ({ navigation }) => {
                 keyboardType="default"
                 placeholder="Rp."
                 onChangeText={(text) => setHarga(text)}
+            />
+
+            <Text style={styles.textLabel}>Contact</Text>
+            <TextInput
+                style={{
+                    borderWidth: 1,
+                    marginBottom: 5,
+                    borderRadius: 5,
+                }}
+                keyboardType="number-pad"
+                placeholder="08"
+                onChangeText={(text) => setContact(text)}
             />
 
             <Text style={styles.textLabel}>Alamat</Text>

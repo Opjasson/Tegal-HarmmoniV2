@@ -31,6 +31,7 @@ const UpdateHotel: React.FC<props> = ({ navigation, route }) => {
     const [maps, setMaps] = useState<string>(data?.maps);
     const [harga, setHarga] = useState<string>(data?.harga);
     const [alamat, setAlamat] = useState<string>(data?.alamat);
+    const [contact, setContact] = useState<string>(data?.contact);
 
     useEffect(() => {
         (async () => {
@@ -118,6 +119,7 @@ const UpdateHotel: React.FC<props> = ({ navigation, route }) => {
                     maps: maps,
                     harga: harga,
                     alamat: alamat,
+                    contact: contact
                 }),
             });
             info();
@@ -135,8 +137,8 @@ const UpdateHotel: React.FC<props> = ({ navigation, route }) => {
                     "Content-Type": "application/json",
                 },
             });
-            alert("Data berhasil dihapus!")
-            navigation.navigate("Setting")
+            alert("Data berhasil dihapus!");
+            navigation.navigate("Setting");
         } catch (error) {
             alert("Ups ada error.");
         }
@@ -196,9 +198,20 @@ const UpdateHotel: React.FC<props> = ({ navigation, route }) => {
                     borderRadius: 5,
                 }}
                 keyboardType="default"
-                placeholder="RNO"
                 onChangeText={(text) => setHarga(text)}
                 value={harga}
+            />
+
+            <Text style={styles.textLabel}>Contact</Text>
+            <TextInput
+                style={{
+                    borderWidth: 1,
+                    marginBottom: 5,
+                    borderRadius: 5,
+                }}
+                keyboardType="default"
+                onChangeText={(text) => setContact(text)}
+                value={contact}
             />
 
             <Text style={styles.textLabel}>Alamat</Text>
@@ -209,7 +222,6 @@ const UpdateHotel: React.FC<props> = ({ navigation, route }) => {
                     borderRadius: 5,
                 }}
                 keyboardType="default"
-                placeholder="RNO"
                 onChangeText={(text) => setAlamat(text)}
                 value={alamat}
             />
