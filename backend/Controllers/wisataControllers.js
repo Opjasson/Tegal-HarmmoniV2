@@ -3,7 +3,15 @@ import wisata from "../Model/wisataModel.js";
 export async function getData(req, res) {
     try {
         const response = await wisata.findAll({
-            attributes: ["id", "nama", "deskripsi", "img", "maps", "createdAt"],
+            attributes: [
+                "id",
+                "nama",
+                "deskripsi",
+                "img",
+                "maps",
+                "contact",
+                "createdAt",
+            ],
         });
         res.status(200).json(response);
     } catch (error) {
@@ -25,13 +33,14 @@ export async function getDataById(req, res) {
 }
 
 export async function addData(req, res) {
-    const { nama, deskripsi, img, maps } = req.body;
+    const { nama, deskripsi, img, maps, contact } = req.body;
     try {
         await wisata.create({
             nama: nama,
             deskripsi: deskripsi,
             img: img,
             maps: maps,
+            contact: contact,
         });
         res.status(201).json({ msg: "Data berhasil ditambahakan!" });
     } catch (error) {
@@ -41,13 +50,14 @@ export async function addData(req, res) {
 
 export const updateWisataById = async (req, res) => {
     try {
-        const { nama, deskripsi, img, maps, alamat } = req.body;
+        const { nama, deskripsi, img, maps, contact } = req.body;
         await wisata.update(
             {
                 nama,
                 deskripsi,
                 img,
                 maps,
+                contact,
             },
             {
                 where: {

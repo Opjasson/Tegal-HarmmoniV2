@@ -35,6 +35,10 @@ const wisata = db.define(
                 notEmpty: true,
             },
         },
+        contact: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
     },
     {
         freezeTableName: true,

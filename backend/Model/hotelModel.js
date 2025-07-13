@@ -43,6 +43,10 @@ const hotel = db.define(
             type: DataTypes.STRING,
             allowNull: true,
         },
+        contact: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
     },
     {
         freezeTableName: true,

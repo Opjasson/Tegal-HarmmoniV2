@@ -12,6 +12,7 @@ export async function getData(req, res) {
                 "harga",
                 "alamat",
                 "maps",
+                "contact",
                 "createdAt",
             ],
         });
@@ -35,7 +36,7 @@ export async function getDataById(req, res) {
 }
 
 export async function addData(req, res) {
-    const { nama, deskripsi, img, maps, harga, alamat } = req.body;
+    const { nama, deskripsi, img, maps, harga, alamat, contact } = req.body;
     try {
         await hotel.create({
             nama: nama,
@@ -44,6 +45,7 @@ export async function addData(req, res) {
             maps: maps,
             harga: harga,
             alamat: alamat,
+            contact: contact
         });
         res.status(201).json({ msg: "Data berhasil ditambahakan!" });
     } catch (error) {
@@ -53,7 +55,7 @@ export async function addData(req, res) {
 
 export const updateHotelById = async (req, res) => {
     try {
-        const { nama, deskripsi, img, maps, harga, alamat } = req.body;
+        const { nama, deskripsi, img, maps, harga, alamat, contact } = req.body;
         await hotel.update(
             {
                 nama,
@@ -62,6 +64,7 @@ export const updateHotelById = async (req, res) => {
                 maps,
                 harga,
                 alamat,
+                contact,
             },
             {
                 where: {

@@ -4,7 +4,15 @@ import kuliner from "../Model/kulinerModel.js";
 export async function getData(req, res) {
     try {
         const response = await kuliner.findAll({
-            attributes: ["id", "nama", "deskripsi", "img", "maps", "createdAt"],
+            attributes: [
+                "id",
+                "nama",
+                "deskripsi",
+                "img",
+                "maps",
+                "contact",
+                "createdAt",
+            ],
         });
         res.status(200).json(response);
     } catch (error) {
@@ -26,13 +34,14 @@ export async function getDataById(req, res) {
 }
 
 export async function addData(req, res) {
-    const { nama, deskripsi, img, maps } = req.body;
+    const { nama, deskripsi, img, maps, contact } = req.body;
     try {
         await kuliner.create({
             nama: nama,
             deskripsi: deskripsi,
             img: img,
             maps: maps,
+            contact: contact,
         });
         res.status(201).json({ msg: "Data berhasil ditambahakan!" });
     } catch (error) {
@@ -42,13 +51,14 @@ export async function addData(req, res) {
 
 export const updateKulinerById = async (req, res) => {
     try {
-        const { nama, deskripsi, img, maps, alamat } = req.body;
+        const { nama, deskripsi, img, maps, contact } = req.body;
         await kuliner.update(
             {
                 nama,
                 deskripsi,
                 img,
                 maps,
+                contact,
             },
             {
                 where: {
