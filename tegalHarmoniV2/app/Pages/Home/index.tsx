@@ -112,17 +112,41 @@ const Home: React.FC<props> = ({ navigation }) => {
     return (
         <View style={styles.containerContent}>
             <ScrollView>
-                <View style={{ flexDirection : "row", justifyContent : "space-between" }}>
+                <View
+                    style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                    }}>
                     <View style={styles.titlePage}>
                         <Text style={styles.home}>Home</Text>
                         <Image style={styles.icon} source={home} />
                     </View>
                     <TouchableOpacity onPress={() => logOut()}>
-                        <Text style={{ fontSize : 20, backgroundColor : "red" }}>Log out</Text>
+                        <Text
+                            style={{
+                                backgroundColor: "red",
+                                borderRadius: 10,
+                                height: 35,
+                                fontSize: 20,
+                            }}>
+                            Log out
+                        </Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={{ backgroundColor : "#5EABD6", borderRadius : 10 }} onPress={() => navigation.navigate("Setting")}>
-                        <Text style={{ fontSize : 20, display : user === "admin" ? "flex" : "none" }}>Settings</Text>
+                    <TouchableOpacity
+                        style={{
+                            backgroundColor: "#5EABD6",
+                            borderRadius: 10,
+                            height: 35,
+                        }}
+                        onPress={() => navigation.navigate("Setting")}>
+                        <Text
+                            style={{
+                                fontSize: 20,
+                                display: user === "admin" ? "flex" : "none",
+                            }}>
+                            Settings
+                        </Text>
                     </TouchableOpacity>
                 </View>
                 <View>

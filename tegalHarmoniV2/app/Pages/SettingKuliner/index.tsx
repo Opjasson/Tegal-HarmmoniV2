@@ -83,8 +83,16 @@ const SettingKuliner: React.FC<props> = ({ navigation, route }) => {
                 </Button>
             </View>
 
-            <Button aksi={() => navigation.navigate("TambahKuliner")} style={styles.button}>
-               + Tambah
+            <Button
+                aksi={() => navigation.navigate("TambahKuliner")}
+                style={styles.button}>
+                + Tambah
+            </Button>
+            <Text></Text>
+            <Button
+                aksi={() => navigation.navigate("MainApp")}
+                style={styles.button}>
+                Back Home
             </Button>
 
             <View style={styles.container}>
