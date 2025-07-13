@@ -20,9 +20,9 @@ interface props {
 
 const UpdateHotel: React.FC<props> = ({ navigation, route }) => {
     const [image, setImage] = useState<string>();
-    
+
     const sendData = route.params?.data;
-    
+
     const [data, setData] = useState(sendData);
 
     const [nama, setNama] = useState<string>(data?.nama);
@@ -31,7 +31,7 @@ const UpdateHotel: React.FC<props> = ({ navigation, route }) => {
     const [maps, setMaps] = useState<string>(data?.maps);
     const [harga, setHarga] = useState<string>(data?.harga);
     const [alamat, setAlamat] = useState<string>(data?.alamat);
-    
+
     useEffect(() => {
         (async () => {
             if (Platform.OS !== "web") {
@@ -126,6 +126,22 @@ const UpdateHotel: React.FC<props> = ({ navigation, route }) => {
         }
     };
 
+    // Handle deleteButton
+    const handleDelette = async () => {
+        try {
+            await fetch(`http://192.168.220.220:5000/hotel/${data?.id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            alert("Data berhasil dihapus!")
+            navigation.navigate("Setting")
+        } catch (error) {
+            alert("Ups ada error.");
+        }
+    };
+
     return (
         <ScrollView>
             <View style={styles.containerForm}></View>
@@ -208,7 +224,7 @@ const UpdateHotel: React.FC<props> = ({ navigation, route }) => {
             </Button>
 
             <Button
-                aksi={() => alert("Hallo")}
+                aksi={() => handleDelette()}
                 style={[
                     styles.button,
                     {
