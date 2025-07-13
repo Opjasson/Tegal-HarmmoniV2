@@ -72,7 +72,7 @@ const Setting: React.FC<props> = ({ navigation, route }) => {
                 </Button>
 
                 <Button
-                    aksi={() => navigation.navigate("Input")}
+                    aksi={() => navigation.navigate("SettingKuliner")}
                     style={styles.button}>
                     Kuliner
                 </Button>
