@@ -1,5 +1,4 @@
 import Button from "@/app/Components/Moleculs/Button";
-import React from "react";
 import {
     ScrollView,
     StyleSheet,
@@ -12,21 +11,27 @@ import {
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { useState, useEffect } from "react";
-import { NavigationProp } from "@react-navigation/native";
+import { NavigationProp, RouteProp } from "@react-navigation/native";
 
 interface props {
     navigation: NavigationProp<any, any>;
+    route: RouteProp<any, any>;
 }
 
-const TambahHotel: React.FC<props> = ({ navigation }) => {
+const UpdateHotel: React.FC<props> = ({ navigation, route }) => {
     const [image, setImage] = useState<string>();
-    const [nama, setNama] = useState<string>();
-    const [deskripsi, setDeskripsi] = useState<string>();
-    const [imgSend, setImgSend] = useState<string>();
-    const [maps, setMaps] = useState<string>();
-    const [harga, setHarga] = useState<string>();
-    const [alamat, setAlamat] = useState<string>();
+    
+    const sendData = route.params?.data;
+    
+    const [data, setData] = useState(sendData);
 
+    const [nama, setNama] = useState<string>(data?.nama);
+    const [deskripsi, setDeskripsi] = useState<string>(data?.deskripsi);
+    const [imgSend, setImgSend] = useState<string>(data?.img);
+    const [maps, setMaps] = useState<string>(data?.maps);
+    const [harga, setHarga] = useState<string>(data?.harga);
+    const [alamat, setAlamat] = useState<string>(data?.alamat);
+    
     useEffect(() => {
         (async () => {
             if (Platform.OS !== "web") {
@@ -99,25 +104,22 @@ const TambahHotel: React.FC<props> = ({ navigation }) => {
     };
 
     // Handle updateButton
-    const sendCreate = async () => {
+    const sendUpdate = async () => {
         try {
-            await fetch(
-                `http://192.168.220.220:5000/hotel`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        nama: nama,
-                        deskripsi: deskripsi,
-                        img: imgSend,
-                        maps: maps,
-                        harga: harga,
-                        alamat: alamat,
-                    }),
-                }
-            );
+            await fetch(`http://192.168.220.220:5000/hotel/${data?.id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    nama: nama,
+                    deskripsi: deskripsi,
+                    img: imgSend,
+                    maps: maps,
+                    harga: harga,
+                    alamat: alamat,
+                }),
+            });
             info();
         } catch (error) {
             alert("ada error nih");
@@ -139,6 +141,7 @@ const TambahHotel: React.FC<props> = ({ navigation }) => {
                 keyboardType="default"
                 placeholder="Nama Hotel"
                 onChangeText={(text) => setNama(text)}
+                value={nama}
             />
 
             <Text style={styles.textLabel}>Deskripsi</Text>
@@ -148,6 +151,7 @@ const TambahHotel: React.FC<props> = ({ navigation }) => {
                 onChangeText={(text) => setDeskripsi(text)}
                 multiline={true}
                 numberOfLines={4}
+                value={deskripsi}
             />
 
             <Text style={styles.textLabel}>Img</Text>
@@ -165,6 +169,7 @@ const TambahHotel: React.FC<props> = ({ navigation }) => {
                 keyboardType="default"
                 placeholder="Maps"
                 onChangeText={(text) => setMaps(text)}
+                value={maps}
             />
 
             <Text style={styles.textLabel}>Harga</Text>
@@ -177,6 +182,7 @@ const TambahHotel: React.FC<props> = ({ navigation }) => {
                 keyboardType="default"
                 placeholder="RNO"
                 onChangeText={(text) => setHarga(text)}
+                value={harga}
             />
 
             <Text style={styles.textLabel}>Alamat</Text>
@@ -189,15 +195,16 @@ const TambahHotel: React.FC<props> = ({ navigation }) => {
                 keyboardType="default"
                 placeholder="RNO"
                 onChangeText={(text) => setAlamat(text)}
+                value={alamat}
             />
 
             <Button
-                aksi={() => sendCreate()}
+                aksi={() => sendUpdate()}
                 style={[
                     styles.button,
                     { marginHorizontal: "auto", width: 190, marginTop: 10 },
                 ]}>
-                Buat
+                Ubah
             </Button>
 
             <Button
@@ -261,4 +268,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default TambahHotel;
+export default UpdateHotel;

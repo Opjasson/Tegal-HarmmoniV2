@@ -9,5 +9,6 @@ import LoginPage from "./Login";
 import RegisterPage from "./Register";
 import TambahHotel from "./tambahHotel";
 import Setting from "./Settings";
+import UpdateHotel from "./UpdateHotel";
 
-export { SplashScreen, Home, Kuliner, Wisata, Hotel, Detail, FormPromo, LoginPage, RegisterPage, TambahHotel, Setting };
+export { SplashScreen, Home, Kuliner, Wisata, Hotel, Detail, FormPromo, LoginPage, RegisterPage, TambahHotel, Setting, UpdateHotel };

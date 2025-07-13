@@ -104,7 +104,7 @@ const Setting: React.FC<props> = ({ navigation, route }) => {
                                 </Text>
                                 <TouchableOpacity
                                     onPress={() =>
-                                        navigation.navigate("Detail", {
+                                        navigation.navigate("UpdateHotel", {
                                             data: item,
                                         })
                                     }>

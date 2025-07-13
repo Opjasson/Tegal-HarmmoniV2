@@ -49,6 +49,15 @@ const Router = () => {
             <Stack.Screen
                 options={{
                     headerShown: true,
+                    headerTitle: "Ubah Hotel",
+                }}
+                name="UpdateHotel"
+                component={UpdateHotel}
+            />
+
+            <Stack.Screen
+                options={{
+                    headerShown: true,
                     headerTitle: "Kembali",
                 }}
                 name="Detail"
