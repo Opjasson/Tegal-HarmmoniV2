@@ -16,10 +16,22 @@ interface props {
     route: RouteProp<any, any>;
 }
 
-const Detail: React.FC<props> = ({ route }) => {
+const Detail: React.FC<props> = ({ navigation, route }) => {
     const sendData = route.params?.data;
 
     const [data, setData] = useState(sendData);
+
+    const sendMesaage = async () => {
+        const url = `whatsapp://send?phone=${
+            data?.contact
+        }&text=${encodeURIComponent("Hallo")}`;
+
+        const supported = await Linking.canOpenURL(url);
+        if (supported) {
+            await Linking.openURL(url);
+            navigation.navigate("home");
+        }
+    };
     return (
         <ScrollView
             style={styles.container}
@@ -31,6 +43,11 @@ const Detail: React.FC<props> = ({ route }) => {
                 <View style={styles.isiContent}>
                     <Text style={styles.namaHotel}>{data?.nama}</Text>
                     <Text style={styles.deskripsi}>{data?.deskripsi}</Text>
+                    <TouchableOpacity onPress={() => sendMesaage()}>
+                        <Text style={{ color : "blue" }}>
+                            Hubungi : {data?.contact}
+                        </Text>
+                    </TouchableOpacity>
                     {data?.harga ? (
                         <Text style={styles.harga}>
                             Harga mulai dari : Rp.{data?.harga}
@@ -38,14 +55,8 @@ const Detail: React.FC<props> = ({ route }) => {
                     ) : (
                         ""
                     )}
-                    {data?.alamat ? (
-                        <Text>
-                            alamat : {data?.alamat}
-                        </Text>
-                    ) : (
-                        ""
-                    )}
-                   
+                    {data?.alamat ? <Text>alamat : {data?.alamat}</Text> : ""}
+
                     <TouchableOpacity
                         style={styles.maps}
                         onPress={() => Linking.openURL(`${data?.maps}`)}>
@@ -74,7 +85,7 @@ const styles = StyleSheet.create({
         height: 300,
         marginHorizontal: "auto",
         borderRadius: 8,
-        elevation: 5
+        elevation: 5,
     },
     isiContent: {
         padding: 11,
@@ -93,15 +104,15 @@ const styles = StyleSheet.create({
         backgroundColor: "#4ca836",
         width: 120,
         borderRadius: 10,
-        flexDirection: 'row',
-        textAlign: 'center',
+        flexDirection: "row",
+        textAlign: "center",
         paddingHorizontal: 10,
         paddingVertical: 5,
         marginTop: 10,
-        elevation: 3
+        elevation: 3,
     },
     mapsText: {
-        color: 'white'
+        color: "white",
     },
     contContent: {
         backgroundColor: "#e8edea",
@@ -110,11 +121,11 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginVertical: 20,
     },
-    harga : {
-        paddingVertical : 5,
-        marginTop : 5,
-        borderTopWidth : 2,
-    }
+    harga: {
+        paddingVertical: 5,
+        marginTop: 5,
+        borderTopWidth: 2,
+    },
 });
 
 export default Detail;

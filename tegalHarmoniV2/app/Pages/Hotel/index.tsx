@@ -35,6 +35,7 @@ const Hotel: React.FC<props> = ({ navigation }) => {
             maps: string;
             harga: string;
             alamat: string;
+            contact: string;
         }[]
     >([]);
 

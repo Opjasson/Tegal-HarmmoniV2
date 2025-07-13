@@ -28,6 +28,7 @@ const Wisata: React.FC<props> = ({ navigation }) => {
             deskripsi: string;
             img: string;
             maps: string;
+            contact : string;
         }[]
     >([]);
 
