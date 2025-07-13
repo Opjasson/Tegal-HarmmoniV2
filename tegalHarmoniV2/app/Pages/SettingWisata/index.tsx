@@ -74,7 +74,7 @@ const SettingWisata: React.FC<props> = ({ navigation, route }) => {
                     style={styles.button}>
                     Kuliner
                 </Button>
-                
+
                 <Button
                     aksi={() => navigation.navigate("SettingWisata")}
                     style={styles.button}>
@@ -82,7 +82,7 @@ const SettingWisata: React.FC<props> = ({ navigation, route }) => {
                 </Button>
             </View>
 
-            <Button aksi={() => navigation.navigate("TambahKuliner")} style={styles.button}>
+            <Button aksi={() => navigation.navigate("TambahWisata")} style={styles.button}>
                + Tambah
             </Button>
 

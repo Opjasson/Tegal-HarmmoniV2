@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { SplashScreen, Home, Kuliner, Wisata, Hotel, Detail, FormPromo, LoginPage, RegisterPage, UpdateHotel, Setting, TambahHotel, SettingKuliner, TambahKuliner, UpdateKuliner, SettingWisata} from "../Pages";
+import { SplashScreen, Home, Kuliner, Wisata, Hotel, Detail, FormPromo, LoginPage, RegisterPage, UpdateHotel, Setting, TambahHotel, SettingKuliner, TambahKuliner, UpdateKuliner, SettingWisata, TambahWisata, UpdateWisata} from "../Pages";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ButtonTabs } from "../Components";
 
@@ -80,6 +80,24 @@ const Router = () => {
                 }}
                 name="SettingWisata"
                 component={SettingWisata}
+            />
+
+            <Stack.Screen
+                options={{
+                    headerShown: true,
+                    headerTitle: "Tambah Wisata",
+                }}
+                name="TambahWisata"
+                component={TambahWisata}
+            />
+
+            <Stack.Screen
+                options={{
+                    headerShown: true,
+                    headerTitle: "Update Wisata",
+                }}
+                name="UpdateWisata"
+                component={UpdateWisata}
             />
             
 
