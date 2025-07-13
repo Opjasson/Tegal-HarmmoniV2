@@ -66,7 +66,7 @@ const Setting: React.FC<props> = ({ navigation, route }) => {
             </View>
             <View style={styles.topBar}>
                 <Button
-                    aksi={() => navigation.navigate("Home")}
+                    aksi={() => navigation.navigate("Setting")}
                     style={styles.button}>
                     Hotel
                 </Button>

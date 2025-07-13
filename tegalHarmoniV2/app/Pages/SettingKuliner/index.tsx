@@ -66,7 +66,7 @@ const SettingKuliner: React.FC<props> = ({ navigation, route }) => {
             </View>
             <View style={styles.topBar}>
                 <Button
-                    aksi={() => navigation.navigate("Home")}
+                    aksi={() => navigation.navigate("Setting")}
                     style={styles.button}>
                     Hotel
                 </Button>
@@ -104,7 +104,7 @@ const SettingKuliner: React.FC<props> = ({ navigation, route }) => {
                                 </Text>
                                 <TouchableOpacity
                                     onPress={() =>
-                                        navigation.navigate("UpdateHotel", {
+                                        navigation.navigate("UpdateKuliner", {
                                             data: item,
                                         })
                                     }>

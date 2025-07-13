@@ -1,5 +1,4 @@
 import Button from "@/app/Components/Moleculs/Button";
-import React from "react";
 import {
     ScrollView,
     StyleSheet,
@@ -12,18 +11,25 @@ import {
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { useState, useEffect } from "react";
-import { NavigationProp } from "@react-navigation/native";
+import { NavigationProp, RouteProp } from "@react-navigation/native";
 
 interface props {
     navigation: NavigationProp<any, any>;
+    route: RouteProp<any, any>;
 }
 
-const TambahKuliner: React.FC<props> = ({ navigation }) => {
+const UpdateKuliner: React.FC<props> = ({ navigation, route }) => {
     const [image, setImage] = useState<string>();
-    const [nama, setNama] = useState<string>();
-    const [deskripsi, setDeskripsi] = useState<string>();
-    const [imgSend, setImgSend] = useState<string>();
-    const [maps, setMaps] = useState<string>();
+
+    const sendData = route.params?.data;
+
+    const [data, setData] = useState(sendData);
+
+    const [nama, setNama] = useState<string>(data?.nama);
+    const [deskripsi, setDeskripsi] = useState<string>(data?.deskripsi);
+    const [imgSend, setImgSend] = useState<string>(data?.img);
+    const [maps, setMaps] = useState<string>(data?.maps);
+    const [alamat, setAlamat] = useState<string>(data?.alamat);
 
     useEffect(() => {
         (async () => {
@@ -87,36 +93,49 @@ const TambahKuliner: React.FC<props> = ({ navigation }) => {
     };
     // Handle deleteButton
     const info = () => {
-        Alert.alert("Data Berhasil Ditambahkan", "Kembali Ke Home", [
+        Alert.alert("Data Berhasil Dirubah", "Kembali Ke Home", [
             {
                 text: "Home",
-                onPress: () => navigation.navigate("SettingKuliner"),
+                onPress: () => navigation.navigate("Setting"),
                 style: "default",
             },
         ]);
     };
 
     // Handle updateButton
-    const sendCreate = async () => {
+    const sendUpdate = async () => {
         try {
-            await fetch(
-                `http://192.168.220.220:5000/kuliner`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        nama: nama,
-                        deskripsi: deskripsi,
-                        img: imgSend,
-                        maps: maps,
-                    }),
-                }
-            );
+            await fetch(`http://192.168.220.220:5000/kuliner/${data?.id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    nama: nama,
+                    deskripsi: deskripsi,
+                    img: imgSend,
+                    maps: maps,
+                }),
+            });
             info();
         } catch (error) {
             alert("ada error nih");
+        }
+    };
+
+    // Handle deleteButton
+    const handleDelette = async () => {
+        try {
+            await fetch(`http://192.168.220.220:5000/kuliner/${data?.id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            alert("Data berhasil dihapus!")
+            navigation.navigate("Setting")
+        } catch (error) {
+            alert("Ups ada error.");
         }
     };
 
@@ -133,8 +152,9 @@ const TambahKuliner: React.FC<props> = ({ navigation }) => {
                     borderRadius: 5,
                 }}
                 keyboardType="default"
-                placeholder="Nama Kuliner"
+                placeholder="Nama Hotel"
                 onChangeText={(text) => setNama(text)}
+                value={nama}
             />
 
             <Text style={styles.textLabel}>Deskripsi</Text>
@@ -144,6 +164,7 @@ const TambahKuliner: React.FC<props> = ({ navigation }) => {
                 onChangeText={(text) => setDeskripsi(text)}
                 multiline={true}
                 numberOfLines={4}
+                value={deskripsi}
             />
 
             <Text style={styles.textLabel}>Img</Text>
@@ -161,19 +182,20 @@ const TambahKuliner: React.FC<props> = ({ navigation }) => {
                 keyboardType="default"
                 placeholder="Maps"
                 onChangeText={(text) => setMaps(text)}
+                value={maps}
             />
 
             <Button
-                aksi={() => sendCreate()}
+                aksi={() => sendUpdate()}
                 style={[
                     styles.button,
                     { marginHorizontal: "auto", width: 190, marginTop: 10 },
                 ]}>
-                Buat
+                Ubah
             </Button>
 
             <Button
-                aksi={() => alert("Hallo")}
+                aksi={() => handleDelette()}
                 style={[
                     styles.button,
                     {
@@ -233,4 +255,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default TambahKuliner;
+export default UpdateKuliner;
