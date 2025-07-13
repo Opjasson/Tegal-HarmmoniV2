@@ -42,6 +42,10 @@ const Home: React.FC<props> = ({ navigation }) => {
         maps: string;
     }>();
 
+    const [id, setId] = useState<number>();
+    const [idLogin, setIdLogin] = useState<number>();
+    const [user, setUser] = useState<string>();
+
     // fetching data hotel atau menambil data dari backend/API
     const fetchData = async () => {
         const response = await fetch("http://192.168.220.220:5000/hotel/7");
@@ -68,6 +72,37 @@ const Home: React.FC<props> = ({ navigation }) => {
         setData3(satu3);
     };
 
+    const getUserId = async () => {
+        const response = await fetch("http://192.168.220.220:5000/login");
+        const data = await response.json();
+        // console.log(data);
+        
+        setIdLogin(Object.values(data)[0]?.id);
+        setId(Object.values(data)[0]?.userId);
+    };
+    
+    useEffect(() => {
+        getUserId();
+    }, []);
+
+    const getAkunLoggin = async () => {
+        const response = await fetch(`http://192.168.220.220:5000/user/${id}`);
+        const user = await response.json();    
+        setUser(user.role);
+    };
+
+    const logOut = async () => {
+        await fetch(`http://192.168.220.220:5000/login/${idLogin}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        navigation.navigate("Login" as never);
+    };
+
+    getAkunLoggin();
+
     useEffect(() => {
         fetchData();
         fetchData2();
@@ -82,8 +117,12 @@ const Home: React.FC<props> = ({ navigation }) => {
                         <Text style={styles.home}>Home</Text>
                         <Image style={styles.icon} source={home} />
                     </View>
-                    <TouchableOpacity>
-                        <Text style={{ fontSize : 20 }}>Log out</Text>
+                    <TouchableOpacity onPress={() => logOut()}>
+                        <Text style={{ fontSize : 20, backgroundColor : "red" }}>Log out</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={{ backgroundColor : "#5EABD6", borderRadius : 10 }} onPress={() => navigation.navigate("Setting")}>
+                        <Text style={{ fontSize : 20, display : user === "admin" ? "flex" : "none" }}>Settings</Text>
                     </TouchableOpacity>
                 </View>
                 <View>

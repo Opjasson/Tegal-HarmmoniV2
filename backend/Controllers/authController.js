@@ -35,3 +35,33 @@ export const login = async (req, res) => {
 
     res.status(201).json({ message: "Login succesfully", response: user });
 };
+
+export async function getLogin(req, res) {
+    try {
+        const response = await Login.findAll();
+
+        res.status(200).json(response);
+    } catch (error) {
+        response.status(500).json({ msg: error.message });
+    }
+}
+
+// Delete data
+export async function deleteLogin(req, res) {
+    const data = await Login.findOne({
+        where: {
+            id: req.params.id,
+        },
+    });
+    if (!data) return res.status(404).json({ msg: "Data tidak ditemukan!" });
+    try {
+        await Login.destroy({
+            where: {
+                id: req.params.id,
+            },
+        });
+        res.status(200).json({ msg: "Data berhasil dihapus!" });
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
+}
