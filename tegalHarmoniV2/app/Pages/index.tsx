@@ -11,5 +11,6 @@ import TambahHotel from "./tambahHotel";
 import Setting from "./Settings";
 import UpdateHotel from "./UpdateHotel";
 import SettingKuliner from "./SettingKuliner";
+import TambahKuliner from "./TambahKuliner";
 
-export { SplashScreen, Home, Kuliner, Wisata, Hotel, Detail, FormPromo, LoginPage, RegisterPage, TambahHotel, Setting, UpdateHotel, SettingKuliner };
+export { SplashScreen, Home, Kuliner, Wisata, Hotel, Detail, FormPromo, LoginPage, RegisterPage, TambahHotel, Setting, UpdateHotel, SettingKuliner, TambahKuliner };
