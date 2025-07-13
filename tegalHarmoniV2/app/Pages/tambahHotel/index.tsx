@@ -175,7 +175,7 @@ const TambahHotel: React.FC<props> = ({ navigation }) => {
                     borderRadius: 5,
                 }}
                 keyboardType="default"
-                placeholder="RNO"
+                placeholder="Rp."
                 onChangeText={(text) => setHarga(text)}
             />
 
@@ -187,7 +187,7 @@ const TambahHotel: React.FC<props> = ({ navigation }) => {
                     borderRadius: 5,
                 }}
                 keyboardType="default"
-                placeholder="RNO"
+                placeholder="Alamat"
                 onChangeText={(text) => setAlamat(text)}
             />
 
@@ -200,19 +200,6 @@ const TambahHotel: React.FC<props> = ({ navigation }) => {
                 Buat
             </Button>
 
-            <Button
-                aksi={() => alert("Hallo")}
-                style={[
-                    styles.button,
-                    {
-                        marginHorizontal: "auto",
-                        width: 190,
-                        marginTop: 10,
-                        backgroundColor: "red",
-                    },
-                ]}>
-                Delete
-            </Button>
             {/* End Form */}
         </ScrollView>
     );
@@ -234,7 +221,7 @@ const styles = StyleSheet.create({
     navbar: {
         padding: 7,
         marginBottom: 40,
-        backgroundColor: "#3bb9f7",
+        backgroundColor: "#2F5249",
     },
     container: {
         flex: 1,
@@ -243,7 +230,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5,
     },
     button: {
-        backgroundColor: "#3bb9f7",
+        backgroundColor: "#2F5249",
         width: 100,
         padding: 8,
         alignItems: "center",

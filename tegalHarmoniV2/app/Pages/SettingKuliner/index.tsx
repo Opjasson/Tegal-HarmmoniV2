@@ -100,7 +100,7 @@ const SettingKuliner: React.FC<props> = ({ navigation, route }) => {
                             />
                             <View style={{ marginLeft: 5 }}>
                                 <Text style={styles.namaHotel}>
-                                    Hotel {item.nama}
+                                    {item.nama}
                                 </Text>
                                 <TouchableOpacity
                                     onPress={() =>

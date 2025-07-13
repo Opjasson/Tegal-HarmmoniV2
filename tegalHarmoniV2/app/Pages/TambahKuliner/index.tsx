@@ -171,20 +171,6 @@ const TambahKuliner: React.FC<props> = ({ navigation }) => {
                 ]}>
                 Buat
             </Button>
-
-            <Button
-                aksi={() => alert("Hallo")}
-                style={[
-                    styles.button,
-                    {
-                        marginHorizontal: "auto",
-                        width: 190,
-                        marginTop: 10,
-                        backgroundColor: "red",
-                    },
-                ]}>
-                Delete
-            </Button>
             {/* End Form */}
         </ScrollView>
     );
