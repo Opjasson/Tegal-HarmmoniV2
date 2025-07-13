@@ -26,7 +26,7 @@ interface props {
     route: RouteProp<any, any>;
 }
 
-const Setting: React.FC<props> = ({ navigation, route }) => {
+const SettingWisata: React.FC<props> = ({ navigation, route }) => {
     // Get id menggunakan params di previos page
     // End state
 
@@ -38,14 +38,12 @@ const Setting: React.FC<props> = ({ navigation, route }) => {
                 deskripsi: string;
                 img: string;
                 maps: string;
-                harga: string;
-                alamat: string;
             }[]
         >([]);
     
         // fetching data untuk mengambil data dari API
         const fetchData = async () => {
-            const response = await fetch("http://192.168.220.220:5000/hotel");
+            const response = await fetch("http://192.168.220.220:5000/wisata");
             const data = await response.json();
     
             // setData = mengisi state data dari fetching
@@ -62,7 +60,7 @@ const Setting: React.FC<props> = ({ navigation, route }) => {
         <View style={styles.container}>
             <StatusBar backgroundColor="#2F5249" barStyle="light-content" />
             <View style={styles.navbar}>
-                <Text style={styles.textNav}>Hotel</Text>
+                <Text style={styles.textNav}>Wisata</Text>
             </View>
             <View style={styles.topBar}>
                 <Button
@@ -76,6 +74,7 @@ const Setting: React.FC<props> = ({ navigation, route }) => {
                     style={styles.button}>
                     Kuliner
                 </Button>
+                
                 <Button
                     aksi={() => navigation.navigate("SettingWisata")}
                     style={styles.button}>
@@ -83,7 +82,7 @@ const Setting: React.FC<props> = ({ navigation, route }) => {
                 </Button>
             </View>
 
-            <Button aksi={() => navigation.navigate("TambahHotel")} style={styles.button}>
+            <Button aksi={() => navigation.navigate("TambahKuliner")} style={styles.button}>
                + Tambah
             </Button>
 
@@ -100,11 +99,11 @@ const Setting: React.FC<props> = ({ navigation, route }) => {
                             />
                             <View style={{ marginLeft: 5 }}>
                                 <Text style={styles.namaHotel}>
-                                    Hotel {item.nama}
+                                    {item.nama}
                                 </Text>
                                 <TouchableOpacity
                                     onPress={() =>
-                                        navigation.navigate("UpdateHotel", {
+                                        navigation.navigate("UpdateKuliner", {
                                             data: item,
                                         })
                                     }>
@@ -247,4 +246,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Setting;
+export default SettingWisata;
