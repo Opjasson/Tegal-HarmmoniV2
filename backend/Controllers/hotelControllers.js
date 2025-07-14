@@ -13,6 +13,7 @@ export async function getData(req, res) {
                 "alamat",
                 "maps",
                 "contact",
+                "terdekat",
                 "createdAt",
             ],
         });

@@ -44,7 +44,7 @@ const Detail: React.FC<props> = ({ navigation, route }) => {
                     <Text style={styles.namaHotel}>{data?.nama}</Text>
                     <Text style={styles.deskripsi}>{data?.deskripsi}</Text>
                     <TouchableOpacity onPress={() => sendMesaage()}>
-                        <Text style={{ color : "blue" }}>
+                        <Text style={{ color: "blue" }}>
                             Hubungi : {data?.contact}
                         </Text>
                     </TouchableOpacity>
@@ -56,6 +56,9 @@ const Detail: React.FC<props> = ({ navigation, route }) => {
                         ""
                     )}
                     {data?.alamat ? <Text>alamat : {data?.alamat}</Text> : ""}
+
+                    {data?.terdekat ? <Text style={{ marginTop : 5, borderTopWidth : 2 }}>Radius 10 KM dari {data?.nama} :</Text> : ""}
+                    {data?.terdekat ? <Text>{data?.terdekat}</Text> : ""}
 
                     <TouchableOpacity
                         style={styles.maps}
