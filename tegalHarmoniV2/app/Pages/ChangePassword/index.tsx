@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
     View,
     Text,
@@ -8,64 +8,45 @@ import {
     SafeAreaView,
 } from "react-native";
 import { MaterialIcons, FontAwesome } from "@expo/vector-icons";
-import { NavigationProp } from "@react-navigation/native";
+import { NavigationProp, RouteProp } from "@react-navigation/native";
 
 interface props {
-    navigation : NavigationProp<any,any>
+    navigation: NavigationProp<any, any>;
+    route: RouteProp<any, any>;
 }
-const LoginPage : React.FC <props> = ({navigation}) => {
+
+const ChangePassword: React.FC<props> = ({ navigation, route }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confPassword, setConfPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [id, setId] = useState("")
     const [error, setError] = useState<string>();
-    const [data, setData] = useState([]);
 
-    const getUserId = async () => {
-        try {
-            const response = await fetch("http://192.168.220.220:5000/login");
-            const datas = await response.json();
-            setData(datas); // update state
-        } catch (error) {
-            console.error("Fetch error:", error);
-        }
-    };
-
-    // 1. Ambil data saat komponen pertama kali muncul
-    useEffect(() => {
-        getUserId();
-    }, []);
-
-    // 2. Pantau perubahan pada `data`
-    useEffect(() => {
-        if (data.length > 0) {
-            navigation.navigate("MainApp"); // Arahkan ke MainApp jika sudah login
-        }
-    }, [data]);
-
-
-
-    const handleLogin = async () => {
-        if (email && password) {
-            const response = await fetch("http://192.168.220.220:5000/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    email: email,
-                    password: password,
-                }),
-            });
-
-            if (JSON.stringify(response.status) === "401") {
-                setError("Email atau password salah!");
-            } else {
-                navigation.navigate("MainApp");
-            }
+    const data = route.params?.data
+    console.log(data);
+    
+    const handleChangePass = async () => {
+        const response = await fetch(`http://192.168.220.220:5000/user/${data.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: data.email,
+                password: password,
+                role: data.role,
+                confPassword: confPassword,
+            }),
+        });
+        if (JSON.stringify(response.status) === "400") {
+            setError("Password sesuaikan Confirm Password!");
         } else {
-            setError("Isi dengan lengkap!");
+            alert("Berhasil merubah akun");
+            navigation.navigate("Login");
         }
     };
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
@@ -79,21 +60,14 @@ const LoginPage : React.FC <props> = ({navigation}) => {
 
                 {/* Card putih */}
                 <View style={styles.card}>
-                    <Text style={{ color : "red", fontSize : 15, textAlign : "center" }}>{error}</Text>
-                    <View style={styles.inputGroup}>
-                        <MaterialIcons
-                            name="person-outline"
-                            size={20}
-                            color="gray"
-                            style={styles.icon}
-                        />
-                        <TextInput
-                            style={styles.input}
-                            placeholder="Email"
-                            value={email}
-                            onChangeText={setEmail}
-                        />
-                    </View>
+                    <Text
+                        style={{
+                            color: "red",
+                            fontSize: 15,
+                            textAlign: "center",
+                        }}>
+                        {error}
+                    </Text>
 
                     <View style={styles.inputGroup}>
                         <MaterialIcons
@@ -123,16 +97,38 @@ const LoginPage : React.FC <props> = ({navigation}) => {
                         </TouchableOpacity>
                     </View>
 
-                    <TouchableOpacity style={styles.forgotPassword} onPress={() => navigation.navigate("Register")}>
-                        <Text style={styles.forgotText}>Register Here!</Text>
-                    </TouchableOpacity>
+                    <View style={styles.inputGroup}>
+                        <MaterialIcons
+                            name="lock-outline"
+                            size={20}
+                            color="gray"
+                            style={styles.icon}
+                        />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Confirm Password"
+                            secureTextEntry={!showPassword}
+                            value={confPassword}
+                            onChangeText={setConfPassword}
+                        />
+                        <TouchableOpacity
+                            onPress={() => setShowPassword(!showPassword)}>
+                            <MaterialIcons
+                                name={
+                                    showPassword
+                                        ? "visibility-off"
+                                        : "visibility"
+                                }
+                                size={20}
+                                color="gray"
+                            />
+                        </TouchableOpacity>
+                    </View>
 
-                    <TouchableOpacity style={styles.forgotPassword} onPress={() => navigation.navigate("CekEmail")}>
-                        <Text style={styles.forgotText}>Lupa password</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.signInButton} onPress={() => handleLogin()}>
-                        <Text style={styles.signInText}>Sign in</Text>
+                    <TouchableOpacity
+                        style={styles.signInButton}
+                        onPress={() => handleChangePass()}>
+                        <Text style={styles.signInText}>Change Password</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -204,4 +200,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LoginPage;
+export default ChangePassword;

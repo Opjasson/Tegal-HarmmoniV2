@@ -16,5 +16,7 @@ import UpdateKuliner from "./UpdateKuliner";
 import SettingWisata from "./SettingWisata";
 import TambahWisata from "./tambahWisata";
 import UpdateWisata from "./UpdateWisata";
+import CekEmail from "./CekEmailForgotPassword";
+import ChangePassword from "./ChangePassword";
 
-export { SplashScreen, Home, Kuliner, Wisata, Hotel, Detail, FormPromo, LoginPage, RegisterPage, TambahHotel, Setting, UpdateHotel, SettingKuliner, TambahKuliner, UpdateKuliner, SettingWisata, TambahWisata, UpdateWisata };
+export { SplashScreen, Home, Kuliner, Wisata, Hotel, Detail, FormPromo, LoginPage, RegisterPage, TambahHotel, Setting, UpdateHotel, SettingKuliner, TambahKuliner, UpdateKuliner, SettingWisata, TambahWisata, UpdateWisata, CekEmail, ChangePassword };
