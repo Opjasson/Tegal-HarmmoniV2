@@ -64,7 +64,7 @@ const CekEmail: React.FC<props> = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.headerText}>Login</Text>
+                <Text style={styles.headerText}>Cek Email</Text>
             </View>
             <View style={styles.body}>
                 {/* Icon user bulat */}

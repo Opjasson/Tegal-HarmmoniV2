@@ -50,7 +50,7 @@ const ChangePassword: React.FC<props> = ({ navigation, route }) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.headerText}>Login</Text>
+                <Text style={styles.headerText}>Ganti Password</Text>
             </View>
             <View style={styles.body}>
                 {/* Icon user bulat */}
