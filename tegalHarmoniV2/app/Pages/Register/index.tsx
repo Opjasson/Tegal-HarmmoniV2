@@ -50,7 +50,7 @@ const RegisterPage: React.FC<props> = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.headerText}>Login</Text>
+                <Text style={styles.headerText}>Register</Text>
             </View>
             <View style={styles.body}>
                 {/* Icon user bulat */}
