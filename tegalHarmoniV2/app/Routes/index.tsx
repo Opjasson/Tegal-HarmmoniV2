@@ -49,7 +49,7 @@ const Router = () => {
             <Stack.Screen name="Register" component={RegisterPage} />
             <Stack.Screen name="CekEmail" component={CekEmail} />
             <Stack.Screen name="ChangePass" component={ChangePassword} />
-            
+
             <Stack.Screen
                 options={{
                     headerShown: true,

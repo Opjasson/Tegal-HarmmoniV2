@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "tegalHarmoniV2",
-    "slug": "tegalHarmoniV2",
+    "name": "Global Travels Pantura",
+    "slug": "GlobalTravelsPantura",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "tegalharmoniv2",
+    "scheme": "Global Travels Pantura",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -16,7 +16,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.azmighazy.GlobalTravelsPantura"
     },
     "web": {
       "bundler": "metro",
@@ -37,6 +38,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "1749650a-ec2b-412c-96f0-b163b117e37f"
+      }
     }
   }
 }
