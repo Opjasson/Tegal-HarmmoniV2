@@ -1,4 +1,4 @@
-import splashScreen from "./Img/splashScreen.jpg";
+import splashScreen from "./Img/splashScreen.jpeg";
 import hotelAlexander from "./Img/HotelKota/alexander.jpg";
 import iklan from "./Img/iklan.png";
 import home from "./Img/home.png";
